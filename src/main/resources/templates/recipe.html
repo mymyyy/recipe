@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: head"></head>
+
+<body>
+    <div th:replace="base :: nav"></div>
+
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th th:text="${recipe.name}"></th>
+                </tr>
+                <tr>
+                    <th th:text="'材料:' + ${recipe.serve} + '人前'"></th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td>
+                    <a th:each="line: ${T(com.mymyyy.recipe.ApplicationController).splitLines(recipe.ingredients)}">
+                        <p th:block th:text="${line}"></p>
+                    </a>
+                </td>
+            </tr>
+
+            <thead class="thead-light">
+                <tr>
+                    <th>作り方</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <a th:each="line: ${T(com.mymyyy.recipe.ApplicationController).splitLines(recipe.instructions)}">
+                        <p th:block th:text="${line}"></p>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <div class="float-right">
+            <a class="btn btn-outline-secondary" href="/recipe">戻る</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

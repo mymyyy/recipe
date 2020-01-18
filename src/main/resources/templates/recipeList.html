@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: head"></head>
+
+<body>
+    <div th:replace="base :: nav"></div>
+
+    <div class="container">
+        <div class="float-right" th:if="${title}=='全件表示'">
+            <form method="GET" action="/recipe/search">
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <input type="text" name="q" class="form-control" placeholder="検索キーワードを入力してください" required />
+                    </div>
+                    <div class="form-group col-9">
+                        <select name="criteria" class="form-control">
+                            <option value="menu">メニュー名検索</option>
+                            <option value="tag">タグ検索</option>
+                            <option value="ingredient">材料検索</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-3">
+                        <button type="submit" class="btn btn-outline-secondary">検索</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="float-right" th:if="${title}=='検索結果'">
+            <a class="btn btn-outline-secondary" href="/recipe">全件表示</a>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>メニュー</th>
+                </tr>
+            </thead>
+            <tr th:each="data : ${recipeList}">
+                <td>
+                    <p><a th:href="@{'/recipe/menu/' + ${data.id}}" th:text="${data.name}"
+                            style="font-weight:bold;"></a>
+                    </p>
+                    <p th:text="'タグ:' + ${data.tag}"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

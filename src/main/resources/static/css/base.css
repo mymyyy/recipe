@@ -1,0 +1,23 @@
+nav {
+    background-color: lavenderblush;
+}
+
+a {
+    color: black;
+}
+
+p {
+    margin: 0;
+}
+
+.form-group {
+    margin: 0;
+}
+
+.navbar-brand{
+    font-size: 200%;
+}
+
+.container {
+    margin-top: 20px;
+}
